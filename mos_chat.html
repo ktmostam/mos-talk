@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>모스탐 상담센터</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0a6bff;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      font-size: 22px;
+    }
+    .chat-container {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 600px;
+    }
+    .chat-window {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .message {
+      margin-bottom: 15px;
+    }
+    .user {
+      text-align: right;
+      color: #0a6bff;
+    }
+    .mos {
+      text-align: left;
+      color: #2d3436;
+    }
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 15px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+    }
+    button {
+      padding: 15px 20px;
+      background-color: #0a6bff;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0052cc;
+    }
+    .btn-back {
+      margin: 30px auto 10px;
+      text-align: center;
+    }
+    .btn-back a {
+      text-decoration: none;
+      color: #636e72;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<header>💬 모스탐 실시간 상담센터</header>
+
+<div class="chat-container">
+  <div class="chat-window" id="chat-window">
+    <div class="message mos">안녕하세요! AI 안전지킴이 모스탐입니다 😊<br>무엇을 도와드릴까요?</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="user-input" placeholder="여기에 질문을 입력하세요...">
+    <button onclick="sendMessage()">보내기</button>
+  </div>
+</div>
+
+<div class="btn-back">
+  <a href="mos_menu.html">← 메뉴로 돌아가기</a>
+</div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById('user-input');
+    const chatWindow = document.getElementById('chat-window');
+    const userMessage = input.value.trim();
+    if (userMessage === '') return;
+
+    // 사용자 메시지 출력
+    const userDiv = document.createElement('div');
+    userDiv.className = 'message user';
+    userDiv.innerText = userMessage;
+    chatWindow.appendChild(userDiv);
+
+    // 모스탐 응답 출력 (임시 응답)
+    const response = document.createElement('div');
+    response.className = 'message mos';
+    response.innerText = '답변을 준비 중입니다... (AI 연결은 추후 구현)';
+    chatWindow.appendChild(response);
+
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    input.value = '';
+  }
+</script>
+
+</body>
+</html>
